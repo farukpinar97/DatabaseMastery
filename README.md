@@ -1,6 +1,15 @@
 # 🚚 TransportMongoDb - Kargo & Lojistik Yönetim Sistemi
 
-Bu proje **Murat Yücedağ** eğitmenliğinde geliştirilen eğitim süreci kapsamında oluşturulmuştur.
+Bu proje, **Murat Yücedağ** eğitmenliğinde Udemy platformunda yayınlanan eğitim serisi kapsamında geliştirilmiştir.
+
+> 📚 **Eğitim Serisi Hakkında**
+> Bu kurs 3 farklı projeden oluşan bir seri olarak tasarlanmıştır. Her proje farklı bir veritabanı teknolojisi kullanılarak geliştirilmektedir:
+>
+> | # | Proje | Veritabanı | Durum |
+> |---|---|---|---|
+> | 1 | 🚚 Kargo & Lojistik Yönetim Sistemi | **MongoDB** | ✅ Tamamlandı |
+> | 2 | *(yakında)* | **PostgreSQL** | 🔜 |
+> | 3 | *(yakında)* | **MSSQL** | 🔜 |
 
 TransportMongoDb, modern web mimarisi ile geliştirilen, kargo ve lojistik firmaları için kapsamlı bir yönetim ve takip platformudur.
 
