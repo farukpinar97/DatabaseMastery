@@ -1,0 +1,39 @@
+﻿@model List<ResultHowItWorkDto>
+
+<section class="section pt-85 bg-worldmap">
+    <div class="container">
+        <div class="text-center">
+            <img class="mb-15" src="/templates/assets/imgs/template/icons/favicon.svg" alt="transp">
+            <h2 class="color-brand-2 mb-20">İşleyişimiz Nasıl ?</h2>
+            <p class="font-md color-grey-700">Teslimat yapmak istediğiniz şehirleri siz belirlersiniz. Tüm teslimatlar belirli bir hizmet bölgesi dahilinde gerçekleştirilmekte olup teslimat hizmetleri konuma göre farklılık gösterebilir. Yöntem veya gereksinim ne olursa olsun, zamanında teslimatı garanti altına almak için size en uygun ekspres kargo çözümünü bulur ve ayarlarız.</p>
+        </div>
+        <div class="row mt-50">
+            <div class="col-lg-6 mb-30">
+                <div class="box-image-how">
+                    <img class="w-100" src="/templates/assets/imgs/page/homepage1/how-it-work.png" alt="transp">
+                    <div class="box-info-bottom-img">
+                        <div class="image-play"><img class="mb-15" src="/templates/assets/imgs/template/icons/play.svg" alt="transp"></div>
+                        <div class="info-play">
+                            <h4 class="color-white mb-15">Bu işe olan tutkumuzla 25 yıldır hizmetinizdeyiz.</h4>
+                            <p class="font-sm color-white">Sürecimiz oldukça basit ve şeffaftır. Siparişinizi oluşturduktan sonra ekibimiz en kısa sürede harekete geçer. Ürünleriniz titizlikle kontrol edilir, özenle paketlenir ve güvenilir kargo firmalarıyla kapınıza kadar teslim edilir. Her adımda sizi bilgilendiriyor, siparişinizin nerede olduğunu anlık olarak takip etmenizi sağlıyoruz. Amacımız; hızlı, güvenli ve sorunsuz bir teslimat deneyimi sunmaktır.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-30">
+                <ul class="list-how-works">
+                    @foreach (var item in Model)
+                    {
+                        <li>
+                            <div class="image-how"> <span class="img"> <img src="@item.IconUrl" alt="transp"></span></div>
+                            <div class="info-how">
+                                <h5 class="color-brand-2">@item.Title</h5>
+                                <p class="font-md color-grey-700">@item.Description</p>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
