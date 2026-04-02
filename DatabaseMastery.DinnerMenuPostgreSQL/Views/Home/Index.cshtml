@@ -1,0 +1,260 @@
+﻿@model List<DatabaseMastery.DinnerMenuPostgreSQL.Dtos.ProductDtos.ResultProductDto>
+@using DatabaseMastery.DinnerMenuPostgreSQL.Dtos.CategoryDtos
+@{
+    ViewData["Title"] = "Ana Sayfa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var categories = ViewBag.Categories as List<ResultCategoryDto> ?? new List<ResultCategoryDto>();
+}
+
+<!-- HOME SLIDER -->
+<div class="slider-container">
+    <div class="owl-carousel owl-theme home-slider">
+
+        <div class="slider-post slider-item-box-bkg">
+            <div class="slider-img" style="background-image:url('https://dina.matchthemes.com/wp-content/uploads/slider-1-3.jpg');"></div>
+            <div class="slider-caption">
+                <div class="slider-text">
+                    <h1>Hoş Geldiniz</h1>
+                    <p>Uluslararası lezzetlerin eşsiz dünyasını keşfedin</p>
+                    <p><a href="/Reservation/Create" class="view-more more-white">Masa Rezervasyonu</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="slider-post slider-item-box-bkg">
+            <div class="slider-img" style="background-image:url('https://dina.matchthemes.com/wp-content/uploads/slider-2-3.jpg');"></div>
+            <div class="slider-caption">
+                <div class="slider-text">
+                    <h1>Hoş Geldiniz</h1>
+                    <p>En kaliteli yerel ürünlerle hazırlanan geleneksel lezzetler</p>
+                    <p><a href="/Reservation/Create" class="view-more more-white">Masa Rezervasyonu</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="slider-post slider-item-box-bkg">
+            <div class="slider-img" style="background-image:url('https://dina.matchthemes.com/wp-content/uploads/slider-3-3.jpg');"></div>
+            <div class="slider-caption">
+                <div class="slider-text">
+                    <h1>Hoş Geldiniz</h1>
+                    <p>Tadını çıkarmak için bizi ziyaret edin</p>
+                    <p><a href="/Reservation/Create" class="view-more more-white">Masa Rezervasyonu</a></p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- /HOME SLIDER -->
+<!-- SECTION 1 — Özellikler -->
+<section id="home-content-1" class="home-widget home-features">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="small-feature">
+                    <div class="small-feature-icon">
+                        <img src="https://dina.matchthemes.com/wp-content/uploads/groceries-2.png" loading="lazy" alt="taze" width="48" height="48" />
+                    </div>
+                    <div class="small-feature-desc">
+                        <h5>Taze Malzemeler</h5>
+                        <p>Günlük temin edilen taze ve kaliteli malzemelerle hazırlanan lezzetler.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="small-feature">
+                    <div class="small-feature-icon">
+                        <img src="https://dina.matchthemes.com/wp-content/uploads/food-2.png" loading="lazy" alt="şef" width="48" height="48" />
+                    </div>
+                    <div class="small-feature-desc">
+                        <h5>Şef Önerileri</h5>
+                        <p>Deneyimli şeflerimizin özenle hazırladığı özel tarifler.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="small-feature">
+                    <div class="small-feature-icon">
+                        <img src="https://dina.matchthemes.com/wp-content/uploads/glass-1.png" loading="lazy" alt="içecek" width="48" height="48" />
+                    </div>
+                    <div class="small-feature-desc">
+                        <h5>Seçkin İçecekler</h5>
+                        <p>Yemeğinizi tamamlayacak özel içecek seçenekleri.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /SECTION 1 -->
+<!-- SECTION 2 — Hakkımızda -->
+<section id="home-content-2" class="home-widget">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="home-subtitle">Hikayemiz</h2>
+                <h1 class="home-title margin-b24 title-headline">Hakkımızda</h1>
+                <div class="title-style-1">
+                    Dinner Menu'ya hoş geldiniz — premium lezzetlere odaklanan modern bir restoran.
+                </div>
+                <p>
+                    İş yemeğiniz veya akşam yemeğiniz için restoranımızın lezzetli tariflerini
+                    kutlamaya davet ediyoruz. Dünyanın dört bir yanından yeni tatları ve ilham
+                    verici tarifleri keşfedin.
+                </p>
+                <a href="#" class="view-more margin-t36">Daha Fazla</a>
+            </div>
+            <div class="col-md-6">
+                <img class="img-fluid img-feature" src="https://dina.matchthemes.com/wp-content/uploads/about-7-3.jpg" loading="lazy" alt="hakkımızda" />
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /SECTION 2 -->
+<!-- SECTION 3 — Parallax -->
+<section class="home-widget parallax" style="background-image:url('https://dina.matchthemes.com/wp-content/uploads/about-4-3.jpg');">
+    <div class="parallax-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="img-center alignc">
+                        <img class="img-fluid img-feature" src="/dina-html/images/home/taste-food.png" loading="lazy" alt="lezzet" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /SECTION 3 -->
+<!-- SECTION 4 — Menüden Öne Çıkanlar -->
+<section id="home-content-4" class="home-widget">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 alignc">
+                <h2 class="home-subtitle">Keşfedin</h2>
+                <h1 class="home-title margin-b24 title-headline">Menümüz</h1>
+                <p>
+                    Mevsimin en taze malzemeleriyle hazırlanan özel tariflerimizi keşfedin.
+                    Tüm içerikler şeflerimiz tarafından özenle seçilmektedir.
+                </p>
+
+                <!-- Kategori bazlı ürün listesi -->
+                <ul class="our-menu">
+                    @foreach (var category in categories.Where(c => c.CategoryStatus))
+                    {
+                        var categoryProducts = Model
+                        .Where(p => p.CategoryId == category.CategoryId && p.Status)
+                        .Take(8)
+                        .ToList();
+
+                        if (!categoryProducts.Any()) continue;
+
+                        <li>
+                            <h4 class="menu-title-section">
+                                <a href="#cat-@category.CategoryId">@category.CategoryName</a>
+                            </h4>
+                            <div id="cat-@category.CategoryId" class="menu-section">
+                                <div class="menu-holder menu-2col menu-accordion">
+                                    @for (int i = 0; i < categoryProducts.Count; i++)
+                                    {
+                                        var product = categoryProducts[i];
+                                        bool isLast = (i % 2 == 1);
+
+                                        <div class="menu-post clearfix @(isLast ? "last" : "")">
+                                            @if (!string.IsNullOrEmpty(product.ImageUrl))
+                                            {
+                                                <div class="menu-post-img">
+                                                    <a href="@product.ImageUrl" class="lightbox" title="@product.ProductName">
+                                                        <img width="400" height="400"
+                                                             src="@product.ImageUrl"
+                                                             alt="@product.ProductName" />
+                                                    </a>
+                                                </div>
+                                            }
+                                            <div class="menu-post-desc">
+                                                <h4>
+                                                    <span class="menu-title">@product.ProductName</span>
+                                                    <span class="menu-dots"></span>
+                                                    <span class="menu-price">₺@product.Price.ToString("F2")</span>
+                                                </h4>
+                                                <div class="menu-text">@product.Description</div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </li>
+                    }
+                </ul>
+
+                <a href="/Menu/Index" class="view-more margin-t36">Tüm Menüyü Gör</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /SECTION 4 -->
+<!-- SECTION 5 — Rezervasyon CTA -->
+<section class="home-widget parallax" style="background-image:url('https://dina.matchthemes.com/wp-content/uploads/about-5-3.jpg');">
+    <div class="parallax-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 alignc">
+                    <h2 class="home-subtitle">Masa Ayırtın</h2>
+                    <h1 class="home-title title-headline margin-b24">Çalışma Saatlerimiz</h1>
+                    <p>Pazartesi - Cuma: 10:00 - 23:00</p>
+                    <p>Cumartesi - Pazar: 09:00 - 01:00</p>
+                    <a class="view-more more-white margin-t36" href="/Reservation/Create">Rezervasyon Yap</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /SECTION 5 -->
+<!-- SECTION 6 -->
+<section id="home-wine" class="home-widget">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img class="img-fluid" src="https://dina.matchthemes.com/wp-content/uploads/about-8-3.jpg" loading="lazy" alt="içecekler" />
+                    </div>
+                    <!--.col-md-6-->
+                    <div class="col-md-6 padding-tb54 alignr">
+                        <h2 class="home-subtitle">Deneyim</h2>
+                        <h1 class="home-title title-headline margin-b24">Seçkin İçecekler</h1>
+                        <div class="title-style-1">Eşsiz bir akşam yemeği, doğru içecekle taçlanır</div>
+                        <p>
+                            Hafif ve ferahlatıcı seçeneklerden yoğun aromalı özel karışımlara kadar
+                            geniş bir içecek yelpazemiz bulunmaktadır. Her damak zevkine hitap eden
+                            içeceklerimiz, yemeğinizin lezzetini katlamak için özenle seçilmiştir.
+                        </p>
+                        <p>
+                            Taze sıkılmış meyve suları, el yapımı limonatalar ve özel kokteyllerimizin
+                            yanı sıra sıcak içecek seçeneklerimizle de misafirlerimize unutulmaz bir
+                            deneyim sunmaktayız. Şeflerimiz her tabak için en uygun içecek eşleşmesini
+                            sizin için önerebilir.
+                        </p>
+                    </div>
+                    <!--.col-md-6-->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /SECTION 6 -->
+<!-- SECTION 7 — Son Parallax -->
+<section class="home-widget parallax" style="background-image:url('https://dina.matchthemes.com/wp-content/uploads/about-9-3.jpg');">
+    <div class="parallax-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 alignc">
+                    <h2 class="home-subtitle">Bizi Ziyaret Edin</h2>
+                    <h1 class="home-title title-headline margin-b24">Yemek ve İçecek</h1>
+                    <p>Eşsiz lezzetleri ve seçkin içecekleri deneyimlemek için bizi ziyaret edin.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /SECTION 7 -->

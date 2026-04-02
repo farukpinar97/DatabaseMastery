@@ -1,0 +1,152 @@
+﻿@model DatabaseMastery.DinnerMenuPostgreSQL.Dtos.ReservationDtos.CreateReservationDto
+@{
+    ViewData["Title"] = "Rezervasyon";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- TOP IMAGE HEADER -->
+<section class="topSingleBkg topPageBkg">
+    <div class="item-content-bkg">
+        <div class="item-img" style="background-image:url('https://dina.matchthemes.com/wp-content/uploads/reservation-image-3.jpg');"></div>
+        <div class="inner-desc">
+            <h1 class="post-title single-post-title">Masa Rezervasyonu</h1>
+            <span class="post-subtitle">Bizi arayın veya aşağıdaki formu doldurun</span>
+        </div>
+    </div>
+</section>
+<!-- /TOP IMAGE HEADER -->
+<!-- MAIN WRAP CONTENT -->
+<section id="wrap-content" class="page-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+
+                <div class="page-holder custom-page-template">
+                    <div class="categ-name">
+                        <h2>Rezervasyon Yap</h2>
+                    </div>
+                    <p class="alignc">
+                        Online rezervasyon yapabilir veya çalışma saatlerimiz içinde
+                        <strong>+90 000 111 22 33</strong> numaralı telefonu arayabilirsiniz.
+                    </p>
+                </div>
+
+                @if (TempData["Success"] != null)
+                {
+                    <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:4px;
+                                    padding:14px 18px;margin-bottom:24px;color:#16a34a;
+                                    font-size:14px;text-align:center;">
+                        <i class="fa fa-check-circle" style="margin-right:8px;"></i>
+                        @TempData["Success"]
+                    </div>
+                }
+
+                <div class="reservation_txt">
+                    <form asp-action="Create" asp-controller="Reservation" method="post">
+                        @Html.AntiForgeryToken()
+
+                        <!-- SATIR 1 -->
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label asp-for="Name">Ad Soyad*</label>
+                                <p>
+                                    <input asp-for="Name"
+                                           class="reservation-fields"
+                                           placeholder="Adınız Soyadınız" />
+                                    <span asp-validation-for="Name" style="color:#e74c3c;font-size:12px;"></span>
+                                </p>
+                            </div>
+                            <div class="col-md-4">
+                                <label asp-for="Email">E-posta*</label>
+                                <p>
+                                    <input asp-for="Email"
+                                           class="reservation-fields"
+                                           placeholder="ornek@mail.com" />
+                                    <span asp-validation-for="Email" style="color:#e74c3c;font-size:12px;"></span>
+                                </p>
+                            </div>
+                            <div class="col-md-4">
+                                <label asp-for="Phone">Telefon*</label>
+                                <p>
+                                    <input asp-for="Phone"
+                                           class="reservation-fields"
+                                           placeholder="+90 555 000 00 00" />
+                                    <span asp-validation-for="Phone" style="color:#e74c3c;font-size:12px;"></span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- SATIR 2 -->
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label asp-for="ReservationDate">Tarih*</label>
+                                <p>
+                                    <input asp-for="ReservationDate"
+                                           type="date"
+                                           class="reservation-fields"
+                                           min="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                                    <span asp-validation-for="ReservationDate" style="color:#e74c3c;font-size:12px;"></span>
+                                </p>
+                            </div>
+                            <div class="col-md-4">
+                                <label asp-for="ReservationTime">Saat*</label>
+                                <p>
+                                    <select asp-for="ReservationTime" class="reservation-fields">
+                                        <option value="">Saat Seçin</option>
+                                        <option value="09:00:00">09:00</option>
+                                        <option value="10:00:00">10:00</option>
+                                        <option value="11:00:00">11:00</option>
+                                        <option value="12:00:00">12:00</option>
+                                        <option value="13:00:00">13:00</option>
+                                        <option value="14:00:00">14:00</option>
+                                        <option value="15:00:00">15:00</option>
+                                        <option value="16:00:00">16:00</option>
+                                        <option value="17:00:00">17:00</option>
+                                        <option value="18:00:00">18:00</option>
+                                        <option value="19:00:00">19:00</option>
+                                        <option value="20:00:00">20:00</option>
+                                        <option value="21:00:00">21:00</option>
+                                        <option value="22:00:00">22:00</option>
+                                    </select>
+                                    <span asp-validation-for="ReservationTime" style="color:#e74c3c;font-size:12px;"></span>
+                                </p>
+                            </div>
+                            <div class="col-md-4">
+                                <label asp-for="GuestCount">Kişi Sayısı*</label>
+                                <p>
+                                    <input asp-for="GuestCount"
+                                           type="number"
+                                           class="reservation-fields"
+                                           min="1"
+                                           max="20"
+                                           placeholder="Kişi sayısı" />
+                                    <span asp-validation-for="GuestCount" style="color:#e74c3c;font-size:12px;"></span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- ÖZEL İSTEK -->
+                        <label asp-for="Description">Özel İstekler</label>
+                        <p>
+                            <textarea asp-for="Description"
+                                      class="reservation-fields"
+                                      cols="100"
+                                      rows="4"
+                                      placeholder="Varsa özel istek veya notlarınızı belirtin..."></textarea>
+                        </p>
+
+                        <p class="alignc">
+                            <input type="submit" value="Rezervasyon Yap" id="submit" />
+                        </p>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /MAIN WRAP CONTENT -->
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

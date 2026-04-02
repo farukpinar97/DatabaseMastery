@@ -1,0 +1,233 @@
+﻿@model List<DatabaseMastery.DinnerMenuPostgreSQL.Dtos.ProductDtos.ResultProductDto>
+@using DatabaseMastery.DinnerMenuPostgreSQL.Dtos.CategoryDtos
+@{
+    ViewData["Title"] = "Galeri";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var categories = ViewBag.Categories as List<ResultCategoryDto> ?? new List<ResultCategoryDto>();
+    var validProducts = Model.Where(p => p.Status && !string.IsNullOrEmpty(p.ImageUrl)).ToList();
+    int initialCount = 8;
+}
+
+<!-- TOP IMAGE HEADER -->
+<section class="topSingleBkg topPageBkg">
+    <div class="item-content-bkg">
+        <div class="item-img" style="background-image:url('https://dina.matchthemes.com/wp-content/uploads/menu-3col-image-3.jpg');"></div>
+        <div class="inner-desc">
+            <h1 class="post-title single-post-title">Galeri</h1>
+            <span class="post-subtitle">Lezzetlerimizden kareler</span>
+        </div>
+    </div>
+</section>
+<!-- /TOP IMAGE HEADER -->
+<!-- MAIN WRAP CONTENT -->
+<section id="wrap-content" class="page-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <!-- KATEGORİ FİLTRE -->
+                @if (categories.Any(c => c.CategoryStatus))
+                {
+                    <div class="text-center" style="margin-bottom:30px;">
+                        <a href="#" class="btn-filter active" data-filter="all">Tümü</a>
+                        @foreach (var category in categories.Where(c => c.CategoryStatus))
+                        {
+                            <a href="#" class="btn-filter" data-filter="cat-@category.CategoryId">
+                                @category.CategoryName
+                            </a>
+                        }
+                    </div>
+                }
+
+                <!-- GALLERY -->
+                <div class="gallery-4colgrid-content">
+                    <div class="menu-holder menu-3col-grid-image gallery-holder gallery-4col clearfix" id="galleryGrid">
+
+                        @if (validProducts.Any())
+                        {
+                            @for (int i = 0; i < validProducts.Count; i++)
+                            {
+                                var product = validProducts[i];
+                                <div class="menu-post gallery-post cat-@product.CategoryId @(i >= initialCount ? "gallery-hidden" : "")"
+                                     data-index="@i">
+                                    <a href="@product.ImageUrl"
+                                       class="lightbox"
+                                       title="@product.ProductName">
+                                        <div class="item-content-bkg gallery-bkg">
+                                            <div class="gallery-img"
+                                                 style="background-image:url('@product.ImageUrl');"></div>
+                                            <div class="menu-post-desc">
+                                                <h4>@product.ProductName</h4>
+                                                <div class="gallery-mglass">
+                                                    <i class="fas fa-search"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <div class="col-md-12 text-center" style="padding:60px 0;">
+                                <p style="font-size:16px;color:#999;">Henüz görsel bulunmuyor.</p>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+                <!-- /GALLERY -->
+                <!-- DAHA FAZLA GÖSTER -->
+                @if (validProducts.Count > initialCount)
+                {
+                    <div class="text-center" style="margin-top:36px;" id="loadMoreWrap">
+                        <span style="display:block;font-size:12px;color:#aaa;margin-bottom:10px;" id="galleryCounter">
+                            @initialCount / @validProducts.Count görsel gösteriliyor
+                        </span>
+                        <a href="#" class="view-more" id="loadMoreBtn">
+                            Daha Fazla Göster
+                        </a>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /MAIN WRAP CONTENT -->
+@section Styles {
+    <style>
+        .btn-filter {
+            background: #fff;
+            border: 1px solid #ddd;
+            color: #555;
+            padding: 7px 18px;
+            border-radius: 3px;
+            font-size: 13px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            margin: 4px;
+            display: inline-block;
+        }
+
+            .btn-filter:hover,
+            .btn-filter.active {
+                background: #1a1a1a;
+                border-color: #1a1a1a;
+                color: #fff;
+            }
+
+        .gallery-hidden {
+            display: none !important;
+        }
+
+        .gallery-post {
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-fade-in {
+            animation: galleryFade 0.4s ease both;
+        }
+
+        @@keyframes galleryFade {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+}
+
+@section Scripts {
+    <script>
+        jQuery(document).ready(function ($) {
+
+            // ── Lightbox ──────────────────────────────────────
+            function initLightbox() {
+                $('.lightbox').magnificPopup({
+                    type: 'image',
+                    gallery: { enabled: true },
+                    image: {
+                        titleSrc: 'title'
+                    }
+                });
+            }
+            initLightbox();
+
+            // ── Kategori Filtre ───────────────────────────────
+            var activeFilter = 'all';
+
+            $('.btn-filter').on('click', function (e) {
+                e.preventDefault();
+                $('.btn-filter').removeClass('active');
+                $(this).addClass('active');
+                activeFilter = $(this).data('filter');
+
+                $('.gallery-post').each(function () {
+                    var matchesFilter = activeFilter === 'all' || $(this).hasClass(activeFilter);
+                    if (matchesFilter) {
+                        $(this).removeClass('gallery-hidden');
+                    } else {
+                        $(this).addClass('gallery-hidden');
+                    }
+                });
+
+                updateCounter();
+                reinitLightbox();
+            });
+
+            // ── Daha Fazla Göster ─────────────────────────────
+            var batchSize = 8;
+
+            $('#loadMoreBtn').on('click', function (e) {
+                e.preventDefault();
+
+                var hiddenItems = $('.gallery-post.gallery-hidden').filter(function () {
+                    return activeFilter === 'all' || $(this).hasClass(activeFilter);
+                });
+
+                hiddenItems.slice(0, batchSize).each(function () {
+                    $(this).removeClass('gallery-hidden').addClass('gallery-fade-in');
+                });
+
+                updateCounter();
+                reinitLightbox();
+            });
+
+            function updateCounter() {
+                var total = $('.gallery-post').filter(function () {
+                    return activeFilter === 'all' || $(this).hasClass(activeFilter);
+                }).length;
+
+                var visible = $('.gallery-post:not(.gallery-hidden)').filter(function () {
+                    return activeFilter === 'all' || $(this).hasClass(activeFilter);
+                }).length;
+
+                $('#galleryCounter').text(visible + ' / ' + total + ' görsel gösteriliyor');
+
+                if (visible >= total) {
+                    $('#loadMoreWrap').fadeOut(300);
+                } else {
+                    $('#loadMoreWrap').fadeIn(300);
+                }
+            }
+
+            function reinitLightbox() {
+                $('.lightbox').magnificPopup('destroy');
+                $('.gallery-post:not(.gallery-hidden) .lightbox').magnificPopup({
+                    type: 'image',
+                    gallery: { enabled: true },
+                    image: { titleSrc: 'title' }
+                });
+            }
+
+        });
+    </script>
+}

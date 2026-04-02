@@ -1,0 +1,17 @@
+﻿<div class="row g-3 mb-4">
+
+    <!-- Günlük Rezervasyon (Çizgi) -->
+
+        @await Component.InvokeAsync("_DashboardLineChartComponentPartial")
+
+
+    <!-- Kategori Sipariş (Bar) -->
+
+        @await Component.InvokeAsync("_DashboardBarChartComponentPartial")
+
+
+    <!-- Gelir Dağılımı (Pasta) -->
+
+        @await Component.InvokeAsync("_DashboardPieChartComponentPartial")
+
+        </div>

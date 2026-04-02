@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36511.14 d17.14
+VisualStudioVersion = 17.14.36511.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseMastery.TransportMongoDb", "DatabaseMastery.TransportMongoDb\DatabaseMastery.TransportMongoDb.csproj", "{1386239D-21F0-4AD4-A666-C25FE5C5B778}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseMastery.DinnerMenuPostgreSQL", "DatabaseMastery.DinnerMenuPostgreSQL\DatabaseMastery.DinnerMenuPostgreSQL.csproj", "{2EF947FA-28EC-481D-AD6B-1CDC52E7FDEE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{1386239D-21F0-4AD4-A666-C25FE5C5B778}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1386239D-21F0-4AD4-A666-C25FE5C5B778}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1386239D-21F0-4AD4-A666-C25FE5C5B778}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EF947FA-28EC-481D-AD6B-1CDC52E7FDEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EF947FA-28EC-481D-AD6B-1CDC52E7FDEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EF947FA-28EC-481D-AD6B-1CDC52E7FDEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EF947FA-28EC-481D-AD6B-1CDC52E7FDEE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

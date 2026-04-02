@@ -1,0 +1,214 @@
+﻿@using DatabaseMastery.DinnerMenuPostgreSQL.Dtos.CategoryDtos
+@{
+    var categories = ViewBag.Categories as List<ResultCategoryDto> ?? new List<ResultCategoryDto>();
+    var currentPath = Context.Request.Path.Value?.ToLower();
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Dinner Menu</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/dina-html/css/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/dina-html/css/fontawesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/dina-html/style.css" />
+
+    @RenderSection("Styles", required: false)
+</head>
+<body class="body-header1">
+
+    <!-- MOBILE MENU -->
+    <div class="mask-nav-2">
+        <nav class="navbar navbar-2 nav-mobile">
+            <div class="nav-holder nav-holder-2">
+                <ul id="menu-menu-2" class="menu-nav-2">
+
+                    <li class="menu-item @(currentPath == "/home/index" || currentPath == "/" ? "current-menu-item" : "")">
+                        <a href="/Home/Index">Ana Sayfa</a>
+                    </li>
+
+                    <li class="menu-item menu-item-has-children @(currentPath != null && currentPath.Contains("/menu") ? "current-menu-item" : "")">
+                        <a href="/Menu/Index">Menü</a>
+                        @if (categories.Any())
+                        {
+                            <ul class="sub-menu">
+                                @foreach (var category in categories.Where(c => c.CategoryStatus))
+                                {
+                                    <li class="menu-item">
+                                        <a href="/Menu/Index?categoryId=@category.CategoryId">
+                                            @category.CategoryName
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                        }
+                    </li>
+
+                    <li class="menu-item @(currentPath != null && currentPath.Contains("/reservation") ? "current-menu-item" : "")">
+                        <a href="/Reservation/Create">Rezervasyon</a>
+                    </li>
+
+                    <li class="menu-item @(currentPath != null && currentPath.Contains("/home/gallery") ? "current-menu-item" : "")">
+                        <a href="/Home/Gallery">Galeri</a>
+                    </li>
+
+                    <li class="menu-item @(currentPath != null && currentPath.Contains("/home/contact") ? "current-menu-item" : "")">
+                        <a href="/Home/Contact">Bize Yazın</a>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+
+        <div class="rightside-nav-2">
+            <h3>Rezervasyon</h3>
+            <ul class="right-side-contact">
+                <li><label>Adres:</label> İstanbul, Türkiye</li>
+                <li><label>Telefon:</label> +90 000 111 22 33</li>
+                <li><label>E-posta:</label> info@dinnermenu.com</li>
+            </ul>
+        </div>
+    </div>
+    <!-- /MOBILE MENU -->
+    <!-- HEADER -->
+    <header id="header-1">
+        <div class="headerWrap-1">
+            <nav class="navbar-1">
+
+                <div class="top-location">
+                    <span class="info-txt">Dinner Menu</span>
+                    <span class="info-txt">İstanbul, Türkiye</span>
+                </div>
+
+                <div class="book-now">
+                    <span class="info-txt">Rezervasyon</span>
+                    <span class="info-txt">+90 000 111 22 33</span>
+                </div>
+
+                <div class="nav-button-holder nav-btn-mobile inactive">
+                    <span class="menu-txt">MENU</span>
+                    <button type="button" class="nav-button">
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+
+                <div class="nav-content-1">
+                    <div class="logo-1">
+                        <a href="/Home/Index">
+                            <span style="font-family:'Playfair Display',serif;font-size:22px;color:#fff;font-weight:700;">
+                                Dinner Menu
+                            </span>
+                        </a>
+                    </div>
+
+                    <div class="nav-holder nav-holder-1 nav-holder-desktop">
+                        <ul id="menu-menu-1" class="menu-nav menu-nav-1">
+
+                            <li class="menu-item @(currentPath == "/home/index" || currentPath == "/" ? "current-menu-item" : "")">
+                                <a href="/Home/Index">Ana Sayfa</a>
+                            </li>
+
+                            <li class="menu-item menu-item-has-children @(currentPath != null && currentPath.Contains("/menu") ? "current-menu-item" : "")">
+                                <a href="/Menu/Index">Menü</a>
+                                @if (categories.Any())
+                                {
+                                    <ul class="sub-menu">
+                                        @foreach (var category in categories.Where(c => c.CategoryStatus))
+                                        {
+                                            <li class="menu-item">
+                                                <a href="/Menu/Index?categoryId=@category.CategoryId">
+                                                    @category.CategoryName
+                                                </a>
+                                            </li>
+                                        }
+                                    </ul>
+                                }
+                            </li>
+
+                            <li class="menu-item @(currentPath != null && currentPath.Contains("/reservation") ? "current-menu-item" : "")">
+                                <a href="/Reservation/Create">Rezervasyon</a>
+                            </li>
+
+                            <li class="menu-item @(currentPath != null && currentPath.Contains("/home/gallery") ? "current-menu-item" : "")">
+                                <a href="/Home/Gallery">Galeri</a>
+                            </li>
+
+                            <li class="menu-item @(currentPath != null && currentPath.Contains("/home/contact") ? "current-menu-item" : "")">
+                                <a href="/Home/Contact">Bize Yazın</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!-- /HEADER -->
+    <!-- CONTENT -->
+    <main>
+        @RenderBody()
+    </main>
+    <!-- /CONTENT -->
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="row alignc">
+
+                <div class="col-md-4">
+                    <div class="footer-content">
+                        <h5>ADRES:</h5>
+                        <p>Dinner Menu<br />İstanbul, Türkiye</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="footer-content">
+                        <h5>REZERVASYON:</h5>
+                        <p>+90 000 111 22 33<br />info@dinnermenu.com</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="footer-content">
+                        <h5>ÇALIŞMA SAATLERİ:</h5>
+                        <p>Pazartesi - Cuma: 10:00 - 23:00<br />Cumartesi - Pazar: 09:00 - 01:00</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <ul class="footer-social">
+                <li><a class="social-facebook" href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                <li><a class="social-instagram" href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                <li><a class="social-tripadvisor" href="#" target="_blank"><i class="fab fa-tripadvisor"></i></a></li>
+            </ul>
+
+            <div class="copyright">
+                Copyright &copy; @DateTime.Now.Year — Dinner Menu
+            </div>
+
+            <div class="scrollup">
+                <a class="scrolltop" href="#"><i class="fas fa-chevron-up"></i></a>
+            </div>
+        </div>
+    </footer>
+    <!-- /FOOTER -->
+
+    <script src="~/dina-html/js/jquery.js"></script>
+    <script src="~/dina-html/js/jquery-migrate.min.js"></script>
+    <script src="~/dina-html/css/bootstrap/js/popper.min.js"></script>
+    <script src="~/dina-html/css/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/dina-html/js/jquery.easing.min.js"></script>
+    <script src="~/dina-html/js/jquery.fitvids.js"></script>
+    <script src="~/dina-html/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/dina-html/js/owl-carousel/owl.carousel.min.js"></script>
+    <script src="~/dina-html/js/init.js"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

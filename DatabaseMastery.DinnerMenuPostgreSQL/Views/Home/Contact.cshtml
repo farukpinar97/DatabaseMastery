@@ -1,0 +1,152 @@
+﻿@model DatabaseMastery.DinnerMenuPostgreSQL.Dtos.ContactDtos.CreateContactDto
+@{
+    ViewData["Title"] = "Bize Yazın";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- TOP IMAGE HEADER -->
+<section class="topSingleBkg topPageBkg">
+    <div class="item-content-bkg">
+        <div class="item-img" style="background-image:url('https://dina.matchthemes.com/wp-content/uploads/about-4-3.jpg');"></div>
+        <div class="inner-desc">
+            <h1 class="post-title single-post-title">Bize Yazın</h1>
+            <span class="post-subtitle">Görüş ve önerilerinizi duymaktan mutluluk duyarız</span>
+        </div>
+    </div>
+</section>
+<!-- /TOP IMAGE HEADER -->
+<!-- SECTION 1 -->
+<section id="wrap-content" class="page-content">
+    <div class="container">
+        <div class="row">
+
+            <!-- SOL — İletişim Bilgileri -->
+            <div class="col-md-5 mobile-margin-b48">
+                <img class="img-fluid" src="https://dina.matchthemes.com/wp-content/uploads/about-10-2.jpg" alt="İletişim" />
+                <div class="contact3-info">
+
+                    <div class="box-contact">
+                        <figure class="image-box-img">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </figure>
+                        <div class="image-box-content">
+                            <h5>Adres</h5>
+                            <p>İstanbul, Türkiye</p>
+                        </div>
+                    </div>
+
+                    <div class="box-contact">
+                        <figure class="image-box-img">
+                            <i class="fas fa-phone"></i>
+                        </figure>
+                        <div class="image-box-content">
+                            <h5>Telefon</h5>
+                            <p>+90 000 111 22 33</p>
+                        </div>
+                    </div>
+
+                    <div class="image-box box-contact">
+                        <figure class="image-box-img">
+                            <i class="far fa-envelope"></i>
+                        </figure>
+                        <div class="image-box-content">
+                            <h5>E-posta</h5>
+                            <p>info@dinnermenu.com</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- /col-md-5 -->
+            <!-- SAĞ — İletişim Formu -->
+            <div class="col-md-7">
+
+                <div class="headline">
+                    <h2>İletişime Geçin</h2>
+                </div>
+
+                <div class="margin-b24">
+                    Görüş, öneri veya sorularınız için bize ulaşabilirsiniz. En kısa sürede dönüş yapacağız.
+                </div>
+
+                @if (TempData["Success"] != null)
+                {
+                    <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:4px;padding:14px 18px;margin-bottom:24px;color:#16a34a;font-size:14px;">
+                        <i class="fa fa-check-circle" style="margin-right:8px;"></i>
+                        @TempData["Success"]
+                    </div>
+                }
+
+                <div id="contact-form-holder">
+                    <form asp-action="Contact" asp-controller="Home" method="post">
+                        @Html.AntiForgeryToken()
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label asp-for="Name">Ad Soyad</label>
+                                <p>
+                                    <input asp-for="Name"
+                                           class="reservation-fields"
+                                           placeholder="Adınız Soyadınız" />
+                                    <span asp-validation-for="Name" style="color:#e74c3c;font-size:12px;"></span>
+                                </p>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="Email">E-posta</label>
+                                <p>
+                                    <input asp-for="Email"
+                                           class="reservation-fields"
+                                           placeholder="ornek@mail.com" />
+                                    <span asp-validation-for="Email" style="color:#e74c3c;font-size:12px;"></span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <label asp-for="Subject">Konu</label>
+                        <p>
+                            <input asp-for="Subject"
+                                   class="reservation-fields"
+                                   placeholder="Mesajınızın konusu" />
+                            <span asp-validation-for="Subject" style="color:#e74c3c;font-size:12px;"></span>
+                        </p>
+
+                        <label asp-for="Message">Mesaj</label>
+                        <p>
+                            <textarea asp-for="Message"
+                                      id="msg-contact"
+                                      class="reservation-fields"
+                                      rows="7"
+                                      placeholder="Mesajınızı buraya yazın..."></textarea>
+                            <span asp-validation-for="Message" style="color:#e74c3c;font-size:12px;"></span>
+                        </p>
+
+                        <p class="contact-btn">
+                            <input type="submit" value="Mesaj Gönder" id="submit" />
+                        </p>
+
+                    </form>
+                </div>
+                <!-- /contact-form-holder -->
+
+            </div>
+            <!-- /col-md-7 -->
+
+        </div>
+        <!-- /row -->
+        <!-- HARİTA -->
+        <div class="gmaps margin-t54">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3010.0!2d28.9784!3d41.0082!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDHCsDAwJzI5LjUiTiAyOMKwNTgnNDIuMiJF!5e0!3m2!1str!2str!4v1"
+                    width="600"
+                    height="450"
+                    style="border:none;">
+            </iframe>
+        </div>
+        <!-- /gmaps -->
+
+    </div>
+    <!-- /container -->
+</section>
+<!-- /SECTION 1 -->
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
